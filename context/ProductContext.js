@@ -24,13 +24,23 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const triggerSearch = async (query) => {
+  const triggerSearch = async (query, isBarcode = false) => {
     setLoading(true);
     try {
-      const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&json=1`;
+      let url;
+      if (isBarcode) {
+        url = `https://world.openfoodfacts.org/api/v0/product/${query}.json`;
+      } else {
+        url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&json=1`;
+      }
+
       const response = await fetch(url);
       const data = await response.json();
-      setProducts(data.products || []);
+      if (isBarcode) {
+        setProducts(data.product ? [data.product] : []);
+      } else {
+        setProducts(data.products || []);
+      }
     } catch (error) {
       console.error("Error during search:", error);
       setProducts([]);

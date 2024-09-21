@@ -14,7 +14,8 @@ export default function Navbar() {
   };
 
   const handleSearchButtonClick = () => {
-    triggerSearch(searchText);
+    const isBarcode = /^\d{8,13}$/.test(searchText);
+    triggerSearch(searchText, isBarcode);
   };
 
   return (
@@ -31,7 +32,7 @@ export default function Navbar() {
           id="Search"
           value={searchText}
           onChange={handleInputChange}
-          placeholder="Search product..."
+          placeholder="Search anything..."
           className="w-full px-4 py-2 text-sm text-black transition-all duration-200 bg-white rounded-md shadow-sm outline-none pe-10 backdrop-blur-lg focus:outline-[#ffcfb5]"
         />
 
