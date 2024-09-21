@@ -7,6 +7,8 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
 
   const fetchInitialData = async () => {
     setLoading(true);
@@ -83,15 +85,29 @@ export const ProductProvider = ({ children }) => {
     setProducts(sortedProducts);
   };
 
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= Math.ceil(products.length / productsPerPage)) {
+      setCurrentPage(page);
+    }
+  };
+
+  const currentProducts = products.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
+
   return (
     <ProductContext.Provider
       value={{
-        products,
+        products: currentProducts,
         loading,
         fetchInitialData,
         triggerSearch,
+        handlePageChange,
+        currentPage,
         triggerCategorySearch,
         sortProducts,
+        totalPages: Math.ceil(products.length / productsPerPage),
       }}
     >
       {children}
