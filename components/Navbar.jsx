@@ -33,7 +33,7 @@ export default function Navbar() {
           value={searchText}
           onChange={handleInputChange}
           placeholder="Search anything..."
-          className="w-full px-4 py-2 text-sm text-black transition-all duration-200 bg-white rounded-md shadow-sm outline-none pe-10 backdrop-blur-lg focus:outline-[#ffcfb5]"
+          className="w-full px-4 py-2 text-sm text-black transition-all duration-200 bg-white rounded-md shadow-sm outline-none pe-10 backdrop-blur-lg focus:outline-[#f6bc9d]"
         />
 
         <span

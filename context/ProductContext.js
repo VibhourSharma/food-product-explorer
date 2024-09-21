@@ -53,6 +53,36 @@ export const ProductProvider = ({ children }) => {
     fetchInitialData();
   }, []);
 
+  const triggerCategorySearch = async (category) => {
+    setLoading(true);
+    try {
+      if (!category) {
+        fetchInitialData();
+      }
+      const url = `https://world.openfoodfacts.org/category/${category}.json`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setProducts(data.products || []);
+    } catch (error) {
+      console.error("Error during category search:", error);
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const sortProducts = (order) => {
+    const sortedProducts = [...products].sort((a, b) => {
+      if (order === "asc") {
+        return a.product_name.localeCompare(b.product_name);
+      } else if (order === "desc") {
+        return b.product_name.localeCompare(a.product_name);
+      }
+      return products;
+    });
+    setProducts(sortedProducts);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -60,6 +90,8 @@ export const ProductProvider = ({ children }) => {
         loading,
         fetchInitialData,
         triggerSearch,
+        triggerCategorySearch,
+        sortProducts,
       }}
     >
       {children}
