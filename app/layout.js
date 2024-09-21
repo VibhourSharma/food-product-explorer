@@ -1,14 +1,21 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
+import { ProductProvider } from "@/context/ProductContext";
 
 export const metadata = {
-  title: "food-explorer",
-  description: "A food explorer app",
+  title: "food Explorer",
+  description: "A food exploring website",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ProductProvider>
+          <Navbar />
+          {children}
+        </ProductProvider>
+      </body>
     </html>
   );
 }
