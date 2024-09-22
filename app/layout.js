@@ -18,10 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.variable}>
-        <ProductProvider>
-          <Navbar />
-          {children}
-        </ProductProvider>
+        <ProductProvider>{children}</ProductProvider>
       </body>
     </html>
   );

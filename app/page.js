@@ -6,6 +6,7 @@ import Filters from "@/components/Filters";
 import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const { products, loading, handlePageChange, currentPage, totalPages } =
@@ -13,6 +14,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar />
       <Filters />
       {loading ? <ProductCardSkeleton /> : <ProductCard products={products} />}
       <Pagination

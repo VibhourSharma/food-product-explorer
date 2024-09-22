@@ -19,8 +19,14 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex items-center justify-around text-xl text-white bg-[#F2E9E4] rounded-b-lg backdrop-blur-lg sm:p-2">
-      <Image src={logo} alt="Logo" width={200} height={200} className="p-3" />
+    <div className="flex items-center justify-around text-xl text-white bg-[#F2E9E4] rounded-b-lg backdrop-blur-lg p-2 flex-wrap">
+      <Image
+        src={logo}
+        alt="Logo"
+        width={200}
+        height={200}
+        className="p-3 mob:m-3"
+      />
 
       <div className="relative z-50">
         <label htmlFor="Search" className="sr-only">
