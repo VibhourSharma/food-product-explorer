@@ -37,7 +37,7 @@ export default function ProductCard() {
               <img
                 src={product?.image_url || defaultImg.src}
                 alt={product.product_name || "Default Image"}
-                className="object-cover w-full h-full"
+                className="object-contain w-full h-full"
               />
             </div>
             <div className="flex-grow p-6">
